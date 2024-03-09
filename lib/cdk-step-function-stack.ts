@@ -37,6 +37,11 @@ export class CdkStepFunctionStack extends cdk.Stack {
       stateMachineType: sfn.StateMachineType.STANDARD
     });
 
-    
+    // Create a CDK Output for the Step Function's ARN
+  new cdk.CfnOutput(this, 'MyStateMachineARN', {
+    value: myStepFunction.stateMachineArn,
+    description: 'The ARN of My Step Function State Machine',
+    exportName: 'MyStateMachineARNExport' // Optional: this name can be used to import the value into another stack
+  });
   }
 }
