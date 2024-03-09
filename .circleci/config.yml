@@ -25,6 +25,9 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
+      - run: # Added step to run tests
+          name: Run Tests
+          command: npm run test
 
 workflows:
   version: 2
