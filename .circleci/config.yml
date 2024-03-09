@@ -24,10 +24,16 @@ jobs:
       - run:
           name: Deploy CDK Stack
           command: cdk deploy --require-approval never
-      - aws-cli/setup: # Set up AWS CLI with stored credentials
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
+      - run:
+          name: Retrieve CDK Stack Outputs
+          command: |
+            aws cloudformation describe-stacks --stack-name CdkStepFunctionStack --query "Stacks[0].Outputs" > cdk-outputs.json
+      - run:
+          name: Set Environment Variables
+          command: |
+            STATE_MACHINE_ARN=$(jq -r '.[] | select(.OutputKey=="StateMachineArnOutput") | .OutputValue' cdk-outputs.json)
+            echo "export STATE_MACHINE_ARN=${STATE_MACHINE_ARN}" >> $BASH_ENV
+            source $BASH_ENV
       - run: # Added step to run tests
           name: Run Tests
           command: npm run test
