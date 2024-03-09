@@ -30,13 +30,9 @@ jobs:
           name: Print cdk deploy output
           command: cat cdk_deploy_output.txt
       - run:
-          name: Retrieve CDK Stack Outputs
+          name: Extract State Machine ARN from CDK Deploy Output
           command: |
-            aws cloudformation describe-stacks --stack-name CdkStepFunctionStack --query "Stacks[0].Outputs" > cdk-outputs.json
-      - run:
-          name: Set Environment Variables
-          command: |
-            STATE_MACHINE_ARN=$(jq -r '.[] | select(.OutputKey=="StateMachineArnOutput") | .OutputValue' cdk-outputs.json)
+            STATE_MACHINE_ARN=$(grep 'StateMachineArnOutput' cdk_deploy_output.txt | awk '{print $3}')
             echo "export STATE_MACHINE_ARN=${STATE_MACHINE_ARN}" >> $BASH_ENV
             source $BASH_ENV
       - run: # Added step to run tests
