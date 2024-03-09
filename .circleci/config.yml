@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.0.0 # Use the Node orb for convenience
-  aws-cli: circleci/aws-cli@2.0.0 # Use the AWS CLI orb
+  aws-cli: circleci/aws-cli@4.0 # Use the AWS CLI orb
 
 jobs:
   build-and-deploy:
