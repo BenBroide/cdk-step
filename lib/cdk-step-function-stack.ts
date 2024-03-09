@@ -37,11 +37,20 @@ export class CdkStepFunctionStack extends cdk.Stack {
       stateMachineType: sfn.StateMachineType.STANDARD
     });
 
+    // output lambda arn
+    new cdk.CfnOutput(this, 'LambdaArnOutput', {
+      value: myFunction.functionArn,
+      exportName: 'LambdaArn',
+    });
   new cdk.CfnOutput(this, 'StateMachineArnOutput', {
     value: myStepFunction.stateMachineArn,
     exportName: 'StateMachineArn',
   });
-
+// output node version of lambda
+new cdk.CfnOutput(this, 'NodeVersion', {
+  value: 'NodeJS 18.x',
+  exportName: 'NodeVersion',
+});
 
   }
 }
