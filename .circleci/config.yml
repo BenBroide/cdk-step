@@ -15,9 +15,9 @@ jobs:
       - run:
           name: Install AWS CDK
           command: npm install -g aws-cdk
-      - run:
-          name: Bootstrap CDK (if necessary)
-          command: cdk bootstrap aws://ACCOUNT_ID/REGION
+      # - run:
+      #     name: Bootstrap CDK (if necessary)
+      #     command: cdk bootstrap aws://ACCOUNT_ID/REGION
       - run:
           name: Synthesize CloudFormation Template
           command: cdk synth
