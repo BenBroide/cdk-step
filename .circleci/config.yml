@@ -12,6 +12,8 @@ jobs:
       - checkout
       - node/install-packages: # Install project dependencies
           pkg-manager: npm
+      - aws-cli/setup:
+          profile_name: default
       - run:
           name: Install AWS CDK
           command: npm install -g aws-cdk
