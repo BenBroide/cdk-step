@@ -27,7 +27,7 @@ jobs:
       - aws-cli/setup: # Set up AWS CLI with stored credentials
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: us-east-1
+          aws-region: "us-east-1"
 
 workflows:
   version: 2
