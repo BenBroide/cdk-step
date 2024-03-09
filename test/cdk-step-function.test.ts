@@ -3,7 +3,7 @@ import * as AWS from 'aws-sdk';
 // Configures Jest to use a longer timeout for async tests
 jest.setTimeout(30000); // 30 seconds
 
-const stateMachineArn = process.env.STATE_MACHINE_ARN;
+const stateMachineArn = process.env.STATE_MACHINE_ARN ?? '';
 
 console.log('-----------------');
 console.log('stateMachineArn:', stateMachineArn);
