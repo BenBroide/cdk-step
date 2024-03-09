@@ -25,7 +25,10 @@ jobs:
           command: cdk synth
       - run:
           name: Deploy CDK Stack
-          command: cdk deploy --require-approval never
+          command: cdk deploy --require-approval never > cdk_deploy_output.txt
+      - run
+          name: Print cdk deploy output
+          command: cat cdk_deploy_output.txt
       - run:
           name: Retrieve CDK Stack Outputs
           command: |
