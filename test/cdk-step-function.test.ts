@@ -12,8 +12,8 @@ test('Test step function', async () => {
     AWS.config.update({region: 'us-east-1'});
 
     const stepfunctions = new AWS.StepFunctions();
-    const stateMachineArn = 'arn:aws:states:us-east-1:374266842493:stateMachine:MyStateMachine6C968CA5-pvNkBzSMqS8Y';
-    
+    //const stateMachineArn = 'arn:aws:states:us-east-1:374266842493:stateMachine:MyStateMachine6C968CA5-pvNkBzSMqS8Y';
+    //const st
     async function startStateMachineExecution() {
       const params = {
         stateMachineArn: stateMachineArn,
